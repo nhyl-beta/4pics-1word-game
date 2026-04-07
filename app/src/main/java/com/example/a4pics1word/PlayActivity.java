@@ -32,7 +32,7 @@ public class PlayActivity extends AppCompatActivity {
         });
 
         //Display's Answer don sa _ _ _ _ _ hehehe
-        answerText = findViewById(R.id.Answer_TV);
+        //answerText = findViewById(R.id.Answer_TV);
         answerText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
