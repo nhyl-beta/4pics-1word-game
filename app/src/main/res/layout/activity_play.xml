@@ -81,35 +81,35 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="5dp"
-            android:text="" />
+            android:text="_" />
 
         <Button
             android:id="@+id/buttonAnswer2"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="5dp"
-            android:text="" />
+            android:text="_" />
 
         <Button
             android:id="@+id/buttonAnswer3"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="5dp"
-            android:text="" />
+            android:text="_" />
 
         <Button
             android:id="@+id/buttonAnswer4"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="5dp"
-            android:text="" />
+            android:text="_" />
 
         <Button
             android:id="@+id/buttonAnswer5"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="5dp"
-            android:text="" />
+            android:text="_" />
 
     </LinearLayout>
 
