@@ -2,6 +2,7 @@ package com.example.a4pics1word;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,15 +10,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.prefs.BackingStoreException;
 
 public class PlayActivity extends AppCompatActivity {
 
     Button backBtn;
 
-    String correctAnswer= "Mouse";
-    String userInput;
-    TextView answerText;
+    String correctAnswer = "MOUSE";
+    StringBuilder userInput;
+    String userAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,18 +55,22 @@ public class PlayActivity extends AppCompatActivity {
                 findViewById(R.id.buttonR)
         };
 
-        final int[] currentIndex = {0};
-
-
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentIndex[0] < emptyButtons.length) {
-                    Button clicked = (Button) v;
-                    emptyButtons[currentIndex[0]].setText(clicked.getText().toString());
-                    clicked.setBackgroundColor(Color.parseColor("#FF0000"));
-                    clicked.setEnabled(false);
-                    currentIndex[0]++;
+                Button clickedLetter = (Button) v;
+
+                for (int i = 0; i < emptyButtons.length; i++) {
+                    if (emptyButtons[i].getText().toString().isEmpty()) {
+
+                        emptyButtons[i].setText(clickedLetter.getText().toString());
+
+                        clickedLetter.setBackgroundColor(Color.parseColor("#FF0000"));
+                        clickedLetter.setEnabled(false);
+
+                        checkAnswer(emptyButtons);
+                        return;
+                    }
                 }
             }
         };
@@ -80,10 +86,8 @@ public class PlayActivity extends AppCompatActivity {
                 String textToUndo = emptyClicked.getText().toString();
 
                 if (!textToUndo.isEmpty()) {
-
                     emptyClicked.setText("");
 
-                    if (currentIndex[0] > 0) currentIndex[0]--;
 
                     for (Button letterBtn : letterButtons) {
                         if (letterBtn.getText().toString().equals(textToUndo) && !letterBtn.isEnabled()) {
@@ -99,17 +103,45 @@ public class PlayActivity extends AppCompatActivity {
         for (Button btn : emptyButtons) {
             btn.setOnClickListener(undoListener);
         }
-
-
-
     }
+
+    private void showCorrectDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Correct!")
+                .setMessage("Nice! Proceed to next level?")
+
+                .setPositiveButton("Next Level", (dialog, which) -> {
+
+                })
+
+                .setNegativeButton("Leave", (dialog, which) -> {
+                    finish();
+                })
+
+                .setCancelable(false)
+                .show();
+    }
+
     public void playActivity () {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    public void updateAnswerDisplay () {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+    private void checkAnswer(Button[] emptyButtons) {
+        userInput = new StringBuilder();
+
+        for (Button btn : emptyButtons) {
+            String text = btn.getText().toString();
+            if (text.isEmpty()) {
+                return;
+            }
+            userInput.append(text);
+        }
+
+        String userAnswer = userInput.toString();
+
+        if (userAnswer.equals(correctAnswer)) {
+            showCorrectDialog();
+        }
     }
 }
