@@ -25,7 +25,7 @@
             android:layout_width="244dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Level 1"
+            android:text="Level 3"
             android:layout_marginLeft="250dp"
             android:textColor="@color/white" />
     </LinearLayout>
@@ -43,7 +43,7 @@
             android:layout_height="150dp"
             android:scaleType="centerCrop"
             android:layout_margin="10dp"
-            app:srcCompat="@drawable/mouse1" />
+            app:srcCompat="@drawable/track1" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -51,7 +51,7 @@
             android:layout_height="150dp"
             android:scaleType="centerCrop"
             android:layout_margin="10dp"
-            app:srcCompat="@drawable/mouse2" />
+            app:srcCompat="@drawable/track2" />
     </LinearLayout>
 
     <!--image 3 and 4-->
@@ -66,7 +66,7 @@
             android:layout_height="150dp"
             android:scaleType="centerCrop"
             android:layout_margin="10dp"
-            app:srcCompat="@drawable/mouse3" />
+            app:srcCompat="@drawable/track3" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -74,7 +74,7 @@
             android:layout_height="150dp"
             android:scaleType="centerCrop"
             android:layout_margin="10dp"
-            app:srcCompat="@drawable/mouse4" />
+            app:srcCompat="@drawable/track4" />
     </LinearLayout>
 
 
@@ -129,32 +129,32 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/buttonE"
+            android:id="@+id/buttonR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="E" />
+            android:text="R" />
 
         <Button
-            android:id="@+id/buttonA"
+            android:id="@+id/buttonK"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="A" />
+            android:text="K" />
 
         <Button
-            android:id="@+id/buttonO"
+            android:id="@+id/buttonT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="O" />
+            android:text="T" />
 
         <Button
-            android:id="@+id/buttonS"
+            android:id="@+id/buttonL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="S" />
+            android:text="L" />
     </LinearLayout>
 
     <!--Choices buttons-->
@@ -164,18 +164,18 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/buttonU"
+            android:id="@+id/buttonA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="U" />
+            android:text="A" />
 
         <Button
-            android:id="@+id/buttonL"
+            android:id="@+id/buttonE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="L" />
+            android:text="E" />
 
         <Button
             android:id="@+id/buttonM"
@@ -185,11 +185,11 @@
             android:text="M" />
 
         <Button
-            android:id="@+id/buttonR"
+            android:id="@+id/buttonC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="R" />
+            android:text="C" />
     </LinearLayout>
 
 </LinearLayout>

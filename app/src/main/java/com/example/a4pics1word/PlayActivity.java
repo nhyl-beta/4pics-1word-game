@@ -8,18 +8,16 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
-import java.util.Arrays;
-import java.util.prefs.BackingStoreException;
+import java.lang.reflect.Array;
 
 public class PlayActivity extends AppCompatActivity {
 
     Button backBtn;
 
-    String correctAnswer = "MOUSE";
-    StringBuilder userInput;
-    String userAnswer;
+    protected String correctAnswer = "MOUSE";
+    protected StringBuilder userInput;
+    protected int level = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +53,13 @@ public class PlayActivity extends AppCompatActivity {
                 findViewById(R.id.buttonR)
         };
 
+        inputChecker(emptyButtons, letterButtons);
+        inputReducer(emptyButtons, letterButtons);
+
+    }
+
+    public void inputChecker(Button[] emptyButtons, Button[] letterButtons){
+
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +83,9 @@ public class PlayActivity extends AppCompatActivity {
         for (Button btn : letterButtons) {
             btn.setOnClickListener(listener);
         }
+    }
 
+    public void inputReducer(Button[] emptyButtons, Button[] letterButtons){
         View.OnClickListener undoListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,17 +112,42 @@ public class PlayActivity extends AppCompatActivity {
         }
     }
 
-    private void showCorrectDialog() {
+    public void showCorrectDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("Correct!")
                 .setMessage("Nice! Proceed to next level?")
 
                 .setPositiveButton("Next Level", (dialog, which) -> {
+                    
+                    Class<?> nextActivity = null;
 
+                    if (level == 1) nextActivity = PlayActivity2.class;
+                    else if (level == 2) nextActivity = PlayActivity3.class;
+                    else if (level == 3) nextActivity = PlayActivity4.class;
+                    else if (level == 4) nextActivity = PlayActivity5.class;
+                    else if (level == 5) nextActivity = PlayActivity.class;
+                    Intent intent = new Intent(this, nextActivity);
+                    startActivity(intent);
                 })
 
                 .setNegativeButton("Leave", (dialog, which) -> {
-                    finish();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                })
+
+                .setCancelable(false)
+                .show();
+    }
+
+    public void showLastDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Perfect!")
+                .setMessage("Nice! You completed the game")
+
+
+                .setNegativeButton("Leave", (dialog, which) -> {
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
                 })
 
                 .setCancelable(false)
@@ -127,7 +159,7 @@ public class PlayActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void checkAnswer(Button[] emptyButtons) {
+    public void checkAnswer(Button[] emptyButtons) {
         userInput = new StringBuilder();
 
         for (Button btn : emptyButtons) {
@@ -141,7 +173,9 @@ public class PlayActivity extends AppCompatActivity {
         String userAnswer = userInput.toString();
 
         if (userAnswer.equals(correctAnswer)) {
-            showCorrectDialog();
+            if (level < 5){showCorrectDialog();}
+            else {showLastDialog();}
+
         }
     }
 }
